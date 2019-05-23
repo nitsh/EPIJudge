@@ -5,7 +5,7 @@ public class Parity {
   @EpiTest(testDataFile = "parity.tsv")
   public static short parity(long x) {
     short result = 0;
-    for(;x != 0; x >>= 1){
+    for(;x != 0; x >>>= 1){
         result ^= (x & 1);
     }
     return result;
