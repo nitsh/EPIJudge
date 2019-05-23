@@ -4,7 +4,6 @@ import epi.test_framework.GenericTest;
 public class SwapBits {
   @EpiTest(testDataFile = "swap_bits.tsv")
   public static long swapBits(long x, int i, int j) {
-    // TODO - you fill in here.
       if(((x >>> i) & 1) != ((x >>> j) & 1 )){
           long bitMask = (1l << i) | (1l << j);
           x ^= bitMask;
