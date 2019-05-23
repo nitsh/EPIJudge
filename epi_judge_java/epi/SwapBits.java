@@ -5,7 +5,11 @@ public class SwapBits {
   @EpiTest(testDataFile = "swap_bits.tsv")
   public static long swapBits(long x, int i, int j) {
     // TODO - you fill in here.
-    return 0;
+      if(((x >>> i) & 1) != ((x >>> j) & 1 )){
+          long bitMask = (1l << i) | (1l << j);
+          x ^= bitMask;
+      }
+    return x;
   }
 
   public static void main(String[] args) {
