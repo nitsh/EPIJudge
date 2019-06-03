@@ -14,26 +14,19 @@ public class DutchNationalFlag {
           return;
       }
       int lessThanIndex = 0;
-      int equalToIndex = 0;
       int greaterThanIndex = A.size() - 1;
       Color pivotValue = A.get(pivotIndex);
 
-      for(int i = 0; i <= greaterThanIndex;){
-          Color currentValue = A.get(i);
+      for(int equalToIndex = 0; equalToIndex <= greaterThanIndex; equalToIndex++){
+          Color currentValue = A.get(equalToIndex);
 
           if(currentValue.ordinal() < pivotValue.ordinal()){
-              Collections.swap(A, lessThanIndex, i);
+              Collections.swap(A, lessThanIndex, equalToIndex);
               lessThanIndex++;
-              if(equalToIndex < lessThanIndex) {
-                  equalToIndex = lessThanIndex;
-              }
-              i++;
-          } else if(currentValue.ordinal() == pivotValue.ordinal()){
-              equalToIndex++;
-              i++;
-          } else {
-              Collections.swap(A, i, greaterThanIndex);
+          } else if(currentValue.ordinal() > pivotValue.ordinal()){
+              Collections.swap(A, equalToIndex, greaterThanIndex);
               greaterThanIndex--;
+              equalToIndex--;
           }
       }
       return;
