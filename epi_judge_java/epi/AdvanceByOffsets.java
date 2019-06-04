@@ -5,17 +5,18 @@ import java.util.List;
 public class AdvanceByOffsets {
   @EpiTest(testDataFile = "advance_by_offsets.tsv")
   public static boolean canReachEnd(List<Integer> maxAdvanceSteps) {
-      maxAdvanceSteps.set(maxAdvanceSteps.size()-1, -1);
-      for(int i = maxAdvanceSteps.size() - 1; i >= 0; i--){
-          for(int j = i+1; j <= i + maxAdvanceSteps.get(i); j++){
-              if(j == maxAdvanceSteps.size() || maxAdvanceSteps.get(j) == -1){
-                  maxAdvanceSteps.set(i, -1);
-                  break;
-              }
+
+      Integer furthestSoFar = 0;
+      for(int i = 0; i < maxAdvanceSteps.size(); i++){
+          if(furthestSoFar >= maxAdvanceSteps.size() -1){
+              return true;
+          }
+          furthestSoFar = (furthestSoFar < i + maxAdvanceSteps.get(i))? i + maxAdvanceSteps.get(i):furthestSoFar;
+          if(furthestSoFar == i ){
+              return false;
           }
       }
-
-      return maxAdvanceSteps.get(0) == -1;
+      return true;
   }
 
   public static void main(String[] args) {
